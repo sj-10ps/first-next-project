@@ -1,0 +1,7 @@
+@import "tailwindcss";
+
+@layer components{
+    .nav-btn{
+        @apply p-2 rounded-lg text-lg capitalize text-white hover:bg-slate-900;
+    }
+}
