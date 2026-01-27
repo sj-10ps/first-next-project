@@ -1,7 +1,27 @@
 @import "tailwindcss";
 
+@theme {
+  /* 1. Register the animation class name */
+ --animate-glow:hue 2s ease-in-out infinite;
+ --animate-imageshadow:imgshadow 2s ease-in-out infinite;
+ @keyframes hue {
+          50%{
+          
+            text-shadow: 2px 4px 5px black
+
+          };
+
+        }
+        @keyframes imgshadow{
+    50%{
+       box-shadow:2px 2px 5px black
+    }
+ }
+}
+
 @layer components{
     .nav-btn{
-        @apply p-2 rounded-lg text-lg capitalize text-white hover:bg-slate-900;
+        @apply p-2 rounded-lg text-lg capitalize text-white hover:bg-gray-700!;
     }
+    
 }

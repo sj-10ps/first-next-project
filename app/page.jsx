@@ -1,11 +1,15 @@
+import Footer from '@/components/Footer'
+
+
+
 import Link from 'next/link'
-import React from 'react'
+import { redirect } from 'next/navigation'
+
 
 const Homepage = () => {
   return (
     <div>
-        <h2 className='text-center font-bold'>Homepage</h2>
-        <Link href={'/properties'}>Properties</Link>
+       {redirect('/public')}
     </div>
   )
 }
