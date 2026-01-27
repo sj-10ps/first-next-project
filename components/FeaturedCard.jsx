@@ -29,15 +29,15 @@ const FeaturedCard = ({ data }) => {
           <div className="flex gap-3 ">
             <p className="flex gap-1 text-gray-700 capitalize items-center">
               <FaBed />
-              <span>{data.beds}beds</span>
+              <span>{data.beds} beds</span>
             </p>
             <p className="flex gap-1 text-gray-700 capitalize items-center">
               <FaBath />
-              <span>{data.baths}baths</span>
+              <span>{data.baths} baths</span>
             </p>
             <p className="flex gap-1 text-gray-700 capitalize items-center">
               <FaRulerCombined />
-              <span>{data.square_feet}sqft</span>
+              <span>{data.square_feet} sqft</span>
             </p>
           </div>
           <div className="flex justify-center gap-3">
