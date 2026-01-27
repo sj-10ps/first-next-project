@@ -1,2 +1,10 @@
-docker build -t nextjs-ci .
-docker run -p 3000:3000 nextjs-ci
+docker build -t rental-ci .
+docker run -p 3000:3000 rental-ci
+
+
+docker login
+docker tag my-next-app SPSGAMER/my-next-app:latest
+docker push SPSGAMER/my-next-app:latest
+
+docker pull SPSGAMER/my-next-app:latest
+docker run -p 3000:3000 SPSGAMER/my-next-app:latest
