@@ -1,0 +1,2 @@
+docker build -t nextjs-ci .
+docker run -p 3000:3000 nextjs-ci
