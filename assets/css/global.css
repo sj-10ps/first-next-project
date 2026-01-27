@@ -4,15 +4,12 @@
   /* 1. Register the animation class name */
  --animate-glow:hue 2s ease-in-out infinite;
  --animate-imageshadow:imgshadow 2s ease-in-out infinite;
- @keyframes hue {
+  @keyframes hue {
           50%{
-          
             text-shadow: 2px 4px 5px black
-
           };
-
         }
-        @keyframes imgshadow{
+  @keyframes imgshadow{
     50%{
        box-shadow:2px 2px 5px black
     }
