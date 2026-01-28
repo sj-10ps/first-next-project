@@ -1,11 +1,29 @@
+'use client'
 import Image from 'next/image'
 import Link from 'next/link'
-import React from 'react'
+import React, { useRef, useState,useEffect } from 'react'
 import { FaBed,FaBath,FaRulerCombined ,FaMoneyBill,FaLocationArrow} from 'react-icons/fa'
+import ZoomImage from './ZoomImage'
 
 
 
 const PropertyBox = ({data}) => {
+    const [zoom,setZoom]=useState(false)
+
+     const photoref=useRef(null)
+        useEffect(() => {
+            const minimise=(e)=>{
+              if(photoref){
+              setZoom(false)
+              } 
+            }
+            document.addEventListener('mousedown',minimise)
+            
+            return () => {
+                document,removeEventListener('mousedown',minimise) 
+            }; 
+        }, [zoom]);
+
     const getMoneyDisplay=()=>{
        
         const {rates}=data
@@ -21,8 +39,11 @@ const PropertyBox = ({data}) => {
   
   return (
     <div className='bg-white shadow-xl rounded-xl py-6 px-4 flex flex-col gap-2'>
+      {zoom&&(
+        <ZoomImage img={data.images[0]} ref={photoref}/>
+      )}
         <div className='relative h-48'>
-             <Image src={data.images&&data.images[0]?`/properties/${data.images[0]}`:`/notfound.webp`} fill  alt='No image' className='hover:scale-105'/>
+             <Image src={data.images&&data.images[0]?`/properties/${data.images[0]}`:`/notfound.webp`} fill  alt='No image' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
             <p className='text-lg text-blue-700 absolute right-2 top-2 bg-white py-1 px-2 rounded-lg'>
                  ${getMoneyDisplay()}
                 </p>

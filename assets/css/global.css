@@ -3,17 +3,35 @@
 @theme {
   /* 1. Register the animation class name */
  --animate-glow:hue 2s ease-in-out infinite;
- --animate-imageshadow:imgshadow 2s ease-in-out infinite;
+
   @keyframes hue {
           50%{
-            text-shadow: 2px 4px 5px black
-          };
-        }
+            text-shadow: 2px 4px 5px black;
+          }
+        };
+
+ --animate-imageshadow:imgshadow 2s ease-in-out infinite;
+
   @keyframes imgshadow{
     50%{
-       box-shadow:2px 2px 5px black
+       box-shadow:2px 2px 5px black;
     }
+ };
+
+ --animate-imgonload:imgonload 0.1s forwards;
+ @keyframes imgonload{
+  from{
+     transform:scale(0.7) ;
+     opacity:0.5;
+  }
+  to{
+      transform:scale(1.2);
+      opacity:1;
+  }
+ 
+
  }
+ 
 }
 
 @layer components{
@@ -21,4 +39,14 @@
         @apply p-2 rounded-lg text-lg capitalize text-white hover:bg-gray-700!;
     }
     
+}
+
+@utility no-scrollbar {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* Hide scrollbar for IE, Edge and Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
 }

@@ -1,9 +1,27 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
+import React, { useState,useEffect,useRef } from "react";
 import { FaBath, FaBed, FaLocationArrow, FaMoneyBill, FaRulerCombined } from "react-icons/fa";
+import ZoomImage from "./ZoomImage";
 
 const FeaturedCard = ({ data }) => {
+  const [zoom,setZoom]=useState(false)
+
+  const photoref=useRef(null)
+    useEffect(() => {
+        const minimise=(e)=>{
+          if(photoref){
+          setZoom(false)
+          } 
+        }
+        document.addEventListener('mousedown',minimise)
+        
+        return () => {
+            document,removeEventListener('mousedown',minimise) 
+        }; 
+    }, [zoom]);
+
     const rates = data.rates
   const getMoneyDisplay = () => {
     if (rates.monthly) {
@@ -16,9 +34,12 @@ const FeaturedCard = ({ data }) => {
   };
   return (
     <div className="bg-white rounded-lg p-4">
+      {zoom&&(
+          <ZoomImage img={data.images[0]} ref={photoref}/>
+      )}
       <div className="flex gap-6">
         <div className="relative h-48 w-64">
-          <Image src={`/properties/${data.images[0]}`} fill alt="" className="hover:scale-105"></Image>
+          <Image src={`/properties/${data.images[0]}`} fill alt="" className="hover:scale-105 duration-300" onClick={()=>setZoom(prev=>!prev)}></Image>
           <div className="absolute bg-white p-2 top-2 left-2 rounded-lg">
             <span className="text-blue-700 uppercase">{getMoneyDisplay()}</span>
           </div>

@@ -16,6 +16,7 @@ COPY . .
 #build nextjs app
 RUN npm run build
 
+
 #expose port
 EXPOSE 3000
 
