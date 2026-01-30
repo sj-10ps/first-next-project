@@ -29,7 +29,11 @@ jobs:
           password: ${{secrets.DOCKER_PASSWORD}}
 
       - name: Build Docker image
-        run: docker build -t sjps10/rental-seek:latest .
+        run: |
+          docker build \
+            --build-arg NEXT_PUBLIC_DOMAIN=${{secrets.NEXT_PUBLIC_DOMAIN}} \
+            --build-arg NEXT_PUBLIC_API_DOMAIN=${{secrets.NEXT_PUBLIC_API_DOMAIN}} \
+            -t sjps10/rental-seek:latest .
       
       - name: Push to docker hub
         run: docker push sjps10/rental-seek:latest
