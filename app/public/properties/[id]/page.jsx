@@ -40,6 +40,12 @@ const PropertyPage = () => {
       <FaSpinner className='animate-spin w-10 mx-auto h-10'/>
      )
   }  
+
+  if(loading&&!property){
+    return(
+      <p className='capitalise text-center mt-10'>Data not found...</p>
+    )
+  }
   return (
     <div className='bg-cyan-100'>
         <TopImageComponent images={property.images}/>
