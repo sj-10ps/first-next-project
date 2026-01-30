@@ -1,12 +1,12 @@
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN||null
 //fetch properties
 export const fetchData=async()=>{
-  
+    console.log(apiDomain)
   if(apiDomain===null){
     return []
   }
   try {
-    console.log(apiDomain)
+   
     const res=await fetch(`${apiDomain}/properties`)
     if(!res.ok){
       throw new Error("cant fetch data") 
