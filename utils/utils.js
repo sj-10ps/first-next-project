@@ -15,6 +15,7 @@ export const fetchData=async()=>{
     return res.json()
   } catch (error) {
     console.log(error.message)
+    return []
   }
 }
 
