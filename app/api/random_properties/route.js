@@ -3,7 +3,7 @@ import Property from "@/models/Property"
 
 export const GET=async()=>{
     try {
-        connectDB()
+        await connectDB()
         const data=await Property.aggregate([
         {$sample:{size:3}}
     ])

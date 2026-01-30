@@ -21,6 +21,10 @@ export const fetchData=async()=>{
 
 //fetch random
 export const fetchRandom=async()=>{
+  if(!apiDomain){
+    console.log("No API Domain found");
+    return []
+  }
   try{
     const res=await fetch(`${apiDomain}/random_properties`)
     if(!res.ok){
