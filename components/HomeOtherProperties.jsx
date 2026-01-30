@@ -7,7 +7,7 @@ import PropertyBox from './PropertyBox'
 
 const shuffleData=async()=>{
    const properties=await fetchData()
-   let shuffled=properties.sort(()=>0.5-Math.random()).slice(0,3)
+   let shuffled=await [...properties].sort(()=>0.5-Math.random()).slice(0,3)
    return shuffled
 }
 
