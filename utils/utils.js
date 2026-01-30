@@ -19,6 +19,20 @@ export const fetchData=async()=>{
   }
 }
 
+//fetch random
+export const fetchRandom=async()=>{
+  try{
+    const res=await fetch(`${apiDomain}/random_properties`)
+    if(!res.ok){
+      throw new Error("cant fetch")
+    }
+    return res.json()
+  }catch(err){
+    console.log(err.message)
+    return []
+  }
+}
+
 //fetch properties by id
 export const fetchdatabyid=async(id)=>{
   if(!apiDomain){
