@@ -26,7 +26,9 @@ export const fetchRandom=async()=>{
     return []
   }
   try{
-    const res=await fetch(`${apiDomain}/random_properties`)
+    const res=await fetch(`${apiDomain}/random_properties`,{
+      cache:'no-store'
+    })
     if(!res.ok){
       throw new Error("cant fetch")
     }
