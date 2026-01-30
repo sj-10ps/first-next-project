@@ -1,7 +1,11 @@
-const apiDomain=process.env.NEXT_PUBLIC_API_DOMAIN||null
+const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN||null
 //fetch properties
 export const fetchData=async()=>{
+  if(!apiDomain){
+    return []
+  }
   try {
+    
     const res=await fetch(`${apiDomain}/properties`)
     if(!res.ok){
       throw new Error("cant fetch data") 
@@ -14,6 +18,9 @@ export const fetchData=async()=>{
 
 //fetch properties by id
 export const fetchdatabyid=async(id)=>{
+  if(!apiDomain){
+    return []
+  }
   try {
     
      const res=await fetch(`${apiDomain}/properties/${id}`)
@@ -29,6 +36,9 @@ export const fetchdatabyid=async(id)=>{
 
 //fetch featured properties
 export const fetchFeaturedData=async()=>{
+  if(!apiDomain){
+    return []
+  }
     try {
        const res=await fetch(`${apiDomain}/featured_properties`) 
        if(!res.ok){
