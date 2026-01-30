@@ -1,4 +1,4 @@
-
+export const dynamic="force-dynamic"
 
 import { fetchData } from '@/utils/utils'
 import PropertyBox from './PropertyBox'
