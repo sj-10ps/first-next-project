@@ -5,6 +5,7 @@ import HomeOtherProperties from '@/components/HomeOtherProperties'
 import InfoBoxSection from '@/components/InfoBoxSection'
 
 const HomePage = () => {
+ 
   return (
     <div>
      <Hero/>

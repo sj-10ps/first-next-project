@@ -100,4 +100,4 @@ const PropertyBox = ({data}) => {
   )
 }
 
-export default React.memo(PropertyBox)
+export default PropertyBox

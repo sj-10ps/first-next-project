@@ -1,0 +1,27 @@
+ [
+    {
+      "title": "Boston Commons Retreat",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Obcaecati libero nobis vero quos aspernatur nemo alias nam, odit dolores sed quaerat illum impedit quibusdam officia ad voluptatibus molestias sequi? Repudiandae!",
+      "name": "John Doe",
+      "replyEmail": "recipient@example.com",
+      "replyPhone": "123-456-7890",
+      "received": "1/1/2024 12:00 PM"
+    },
+    {
+      "title": "Seaside Villa Escape",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam dolore voluptatum, ipsa porro magni suscipit rerum repellendus.",
+      "name": "Jane Smith",
+      "replyEmail": "jane.smith@example.com",
+      "replyPhone": "987-654-3210",
+      "received": "2/15/2024 9:30 AM"
+    },
+    {
+      "title": "Mountain View Lodge",
+      "message": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, necessitatibus. Accusantium exercitationem minus expedita.",
+      "name": "Michael Brown",
+      "replyEmail": "michael.brown@example.com",
+      "replyPhone": "555-123-4567",
+      "received": "3/10/2024 4:45 PM"
+    }
+  ]
+

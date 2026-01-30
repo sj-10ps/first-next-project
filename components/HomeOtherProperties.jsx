@@ -1,21 +1,17 @@
-'use client'
-import React, { useEffect, useState } from 'react'
-import properties from '@/assets/data/properties.json'
+
+import { fetchData } from '@/utils/utils'
 import PropertyBox from './PropertyBox'
-const HomeOtherProperties = () => {
-     const [shuffled, setShuffled] = useState([])
 
-  useEffect(() => {
-    //eslint-disable-next-line react-hooks/set-state-in-effect
-    setShuffled(
-      [...properties]
-        .sort(() => 0.5 - Math.random())
-        .slice(0, 3)
-    )
-  }, [])
 
-    
-    
+
+const shuffleData=async()=>{
+   const properties=await fetchData()
+   let shuffled=properties.sort(()=>0.5-Math.random()).slice(0,3)
+   return shuffled
+}
+
+const HomeOtherProperties = async() => {
+  const shuffled=await shuffleData()
   return (
     <div className='flex flex-col gap-6 py-4 md:max-w-[85%] mx-auto p-4'>
          <h2 className='text-3xl text-blue-700 font-bold capitalize text-center'>recent properties</h2>

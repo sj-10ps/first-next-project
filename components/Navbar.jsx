@@ -117,7 +117,7 @@ const Navbar = () => {
         {isLoggedIn&&(
              <div className="flex gap-4  items-center">
             {/* NOTIFICATION BELL */}
-            <div className="relative bg-gray-800 w-8 h-8 p-1 flex items-center justify-center rounded-full">
+            <Link href={'/public/messages'} className="relative bg-gray-800 w-8 h-8 p-1 flex items-center justify-center rounded-full">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -136,7 +136,7 @@ const Navbar = () => {
               <div className="absolute bg-red-500 -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center text-[10px] text-white">
                 3
               </div>
-            </div>
+            </Link>
 
             {/* PROFILE DROPDOWN CONTAINER
                - We attach the 'ref' here so the logic knows this is the "Safe Zone".

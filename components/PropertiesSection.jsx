@@ -1,9 +1,13 @@
 import React from 'react'
-import properties from '@/assets/data/properties.json'
+
 import PropertyBox from './PropertyBox'
+import { fetchData } from '@/utils/utils';
 
 
-const PropertiesSection = () => {
+
+const PropertiesSection =async () => {
+  const properties=await fetchData();
+  properties.sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
   return (
     <div className='p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-4 max-w-[90%] mx-auto'>
         {properties.length===0?(

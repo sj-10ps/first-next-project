@@ -1,9 +1,11 @@
 @import "tailwindcss";
-
+@import "flowbite";
 @theme {
+
+
   /* 1. Register the animation class name */
  --animate-glow:hue 2s ease-in-out infinite;
-
+ 
   @keyframes hue {
           50%{
             text-shadow: 2px 4px 5px black;
@@ -37,6 +39,12 @@
 @layer components{
     .nav-btn{
         @apply p-2 rounded-lg text-lg capitalize text-white hover:bg-gray-700!;
+    }
+    .property-form-label{
+      @apply capitalize font-semibold text-slate-800 ;
+    }
+    .property-form-input{
+      @apply p-2 border placeholder:capitalize placeholder:text-slate-700 rounded-lg w-full;
     }
     
 }

@@ -4,11 +4,13 @@ import ClipLoader from 'react-spinners/ClipLoader'
 
 const override={
     display:'block',
-    margin:'50px auto'
 }
 
 const loading = () => {
   return (
+    <div className='h-screen  flex justify-center items-center inset-0'>
+
+   
     <ClipLoader
      color='blue'
      loading={loading} 
@@ -17,6 +19,7 @@ const loading = () => {
      aria-label='Loading Spinner'
 
        />
+        </div>
   )
 }
 
