@@ -6,7 +6,7 @@ export const fetchData=async()=>{
     return []
   }
   try {
-    
+    console.log(apiDomain)
     const res=await fetch(`${apiDomain}/properties`)
     if(!res.ok){
       throw new Error("cant fetch data") 
