@@ -2,7 +2,7 @@ const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN||null
 //fetch properties
 export const fetchData=async()=>{
     console.log(apiDomain)
-  if(apiDomain===null){
+  if(!apiDomain){
     return []
   }
   try {
