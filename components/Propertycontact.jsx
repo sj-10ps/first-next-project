@@ -125,7 +125,7 @@ const Propertycontact = ({data}) => {
             {state.errors?.message&&(
               <p className='text-red-600'>{state.errors.message}</p>
             )}
-            <input type="submit" value="submit" className='bg-blue-500 hover:opacity-80 rounded-lg p-2 mt-5 text-white text-lg' />
+            <input type="submit" value={session.user.id===data.owner?"Cant send Message to yourself":"submit"} className='bg-blue-500 hover:opacity-80 rounded-lg p-2 mt-5 text-white text-lg disabled:bg-red-700 disabled:pointer-events-none' disabled={session.user.id===data.owner}/>
          </div>
 
          </form>

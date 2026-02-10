@@ -68,13 +68,13 @@ const PropertyPage = () => {
           <div className='lg:col-span-2'>
                 <PropertyBasicCard data={property}/>
           </div>
-          {
+          {/* {
             session?.user.id===property.owner&&(
                <div className='lg:row-span-3'>
               <p className='text-lg text-red-800 text-center bg-white p-6 rounded-lg shadow-2xl'>You Owns This Property</p>
             </div>
             )
-          }
+          } */}
           {session?(
             <div className='lg:row-span-3'>
               <Propertycontact  data={property}/>

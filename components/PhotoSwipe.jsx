@@ -19,11 +19,11 @@ const PhotoSwipe = ({data}) => {
             </Item>
 
        ):(
-        <div className='grid md:grid-cols-2 gap-4'>
+        <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
            {images.map((i,index)=>(
             <Item key={index} thumbnail={i} original={i} width={1000} height={600}>
                 {({ref,open})=>(
-                <div ref={ref} onClick={open} className={`h-80 w-full relative ${images.length===3 && index===2?'col-span-2':'col-span-1'}`}>
+                <div ref={ref} onClick={open} className={`h-64 md:h-80 w-full relative ${images.length===3 && index===2?'md:col-span-2':'md:col-span-1'}`}>
                  <Image src={i} alt='' fill />
                 </div>
                 )}
@@ -39,3 +39,8 @@ const PhotoSwipe = ({data}) => {
 }
 
 export default PhotoSwipe
+
+
+
+
+
