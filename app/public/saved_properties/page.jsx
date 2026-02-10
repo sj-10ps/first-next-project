@@ -1,14 +1,29 @@
 import React from 'react'
-import Properties from '@/assets/data/properties.json'
-import ListedCard from '@/components/ListedCard'
-const page = () => {
+import SavedPropertyCard from '@/components/SavedPropertyCard'
+import { cookies } from 'next/headers'
+
+const fetchData=async()=>{
+  try {
+    const cookiestore=await cookies()
+    const res=await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/properties/saved`,{cache:'no-store',headers:{Cookie:cookiestore.toString()}})
+  
+    if(!res.ok){
+     throw new Error('cant fetch')
+    }
+    return res.json()
+  } catch (error) {
+      console.log(error.message)
+      return []
+  }
+}
+const page = async () => {
+  const Properties=await fetchData()
   return (
-    <div className='mt-6 px-6'>
+    <div className='mt-6 px-6 py-12'>
       <h2 className='text-3xl capitalize font-bold'>your saved properties</h2>
      <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4'>
          {Properties.map(p=>(
-            <ListedCard key={p._id} data={p}/>
-
+            <SavedPropertyCard key={p._id} data={p}/>
          ))}
      </div>
     </div>

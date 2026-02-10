@@ -1,5 +1,5 @@
 @import "tailwindcss";
-@import "flowbite";
+
 @theme {
 
 
@@ -21,18 +21,17 @@
  };
 
  --animate-imgonload:imgonload 0.1s forwards;
- @keyframes imgonload{
-  from{
-     transform:scale(0.7) ;
-     opacity:0.5;
+@keyframes imgonload {
+  from {
+    transform: scale(0.7);
+    opacity: 0.5;
   }
-  to{
-      transform:scale(1.2);
-      opacity:1;
+  to {
+    transform: scale(1.2);
+    opacity: 1;
   }
- 
+} 
 
- }
  
 }
 

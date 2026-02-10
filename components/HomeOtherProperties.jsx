@@ -1,6 +1,6 @@
 
 
-import { fetchData, fetchRandom } from '@/utils/utils'
+import { fetchData, fetchRandom } from '@/utils/requests'
 import PropertyBox from './PropertyBox'
 
 

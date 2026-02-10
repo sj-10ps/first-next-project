@@ -39,7 +39,7 @@ const FeaturedCard = ({ data }) => {
       )}
       <div className="flex gap-6">
         <div className="relative h-48 w-64">
-          <Image src={`/properties/${data.images[0]}`} fill alt="" className="hover:scale-105 duration-300" onClick={()=>setZoom(prev=>!prev)}></Image>
+          <Image src={`${data.images[0]}`} fill alt="" className="hover:scale-105 duration-300" onClick={()=>setZoom(prev=>!prev)}></Image>
           <div className="absolute bg-white p-2 top-2 left-2 rounded-lg">
             <span className="text-blue-700 uppercase">{getMoneyDisplay()}</span>
           </div>

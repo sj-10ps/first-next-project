@@ -11,3 +11,12 @@ docker push sjps10/rental-seek:latest
 //pull
 docker pull sjps10/rental-seek:latest
 docker run -p 3000:3000 sjps10/rental-seek:latest
+
+
+ngrok http 3000
+
+
+
+
+
+

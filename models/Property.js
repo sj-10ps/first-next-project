@@ -1,4 +1,4 @@
-import { Schema,models,model } from "mongoose";
+import { Schema,models,model, trusted } from "mongoose";
 const PropertySchema=new Schema({
     owner:{
         type:Schema.Types.ObjectId,
@@ -21,13 +21,16 @@ const PropertySchema=new Schema({
             type:String
         },
         city:{
-            type:String
+            type:String,
+            required:true
         },
         state:{
-            type:String
+            type:String,
+            required:true
         },
         zipcode:{
-            type:String
+            type:String,
+            required:true
         }
     },
     beds:{
@@ -60,13 +63,15 @@ const PropertySchema=new Schema({
     },
     seller_info:{
         name:{
-            type:String
+            type:String,
+            required:true
         },
         email:{
-            type:String
+            type:String,
+            required:true
         },
         phone:{
-            type:Number
+            type:String
         }
     },
     images:[

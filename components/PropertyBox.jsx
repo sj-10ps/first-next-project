@@ -43,7 +43,7 @@ const PropertyBox = ({data}) => {
         <ZoomImage img={data.images[0]} ref={photoref}/>
       )}
         <div className='relative h-48'>
-             <Image src={data.images&&data.images[0]?`/properties/${data.images[0]}`:`/notfound.webp`} fill  alt='No image' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
+             <Image src={data.images&&data.images[0]?`${data.images[0]}`:`/notfound.webp`} fill  alt='No image' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)} priority={true}/>
             <p className='text-lg text-blue-700 absolute right-2 top-2 bg-white py-1 px-2 rounded-lg'>
                  ${getMoneyDisplay()}
                 </p>

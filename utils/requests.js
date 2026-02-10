@@ -1,23 +1,8 @@
+
+
 const apiDomain = process.env.NEXT_PUBLIC_API_DOMAIN||null
 //fetch properties
-export const fetchData=async()=>{
-  console.log(apiDomain)
-  if(!apiDomain){
-    console.log("No API Domain found");
-    return []
-  }
-  try {
-   
-    const res=await fetch(`${apiDomain}/properties`)
-    if(!res.ok){
-      throw new Error("cant fetch data") 
-    }
-    return res.json()
-  } catch (error) {
-    console.log(error.message)
-    return []
-  }
-}
+
 
 //fetch random
 export const fetchRandom=async()=>{
@@ -73,3 +58,40 @@ export const fetchFeaturedData=async()=>{
          return []
     } 
 }
+
+//fetch saved properties
+export const fetchSaved=async ()=>{
+  if(!apiDomain){
+    return []
+  }
+  try {
+    const res=await fetch(`${apiDomain}/properties/saved`)
+    if(!res.ok){
+      throw new Error('failed to fetch')
+    }
+  } catch (error) {
+    console.log(error.message)
+     return []
+  }
+}
+
+
+//fetch listed
+export const fetchListed=async(user_id)=>{
+try {
+  if(!apiDomain){
+    return []
+  }
+  const res=await fetch(`${apiDomain}/user/${user_id}`)
+  if(!res.ok){
+    throw new Error("cant fetch")
+
+  }
+  return res.json()
+} catch (error) {
+  console.log(error.message)
+  return []
+}
+}
+
+

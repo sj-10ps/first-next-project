@@ -5,7 +5,7 @@ const PropertyMoreDetails = ({data}) => {
   return (
     <div className='bg-white shadow-lg rounded-lg px-4 py-8 flex flex-col gap-4'>
        <h2 className='text-xl font-bold capitalize'>description and details</h2>
-       <div className='flex justify-center gap-14'>
+       <div className='flex justify-around'>
            <div className='flex gap-1 items-center text-lg text-blue-700 capitalize'>
               <FaBed/> {data.beds} <span>beds</span>
            </div>

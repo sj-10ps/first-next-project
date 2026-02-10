@@ -9,5 +9,6 @@ export const GET=async(request)=>{
      return new Response(JSON.stringify(data),{status:200})
    } catch (error) {
       console.log(error.message)
+      return new Response({status:500})
    }
 }

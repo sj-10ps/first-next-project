@@ -12,18 +12,63 @@ import Profile from '@/assets/images/profile.png';
 // Components
 import MobileDropdown from './MobileDropdown';
 import ProfileMiniDropdown from './ProfileMiniDropdown';
+import { getProviders, useSession,signIn,signOut } from 'next-auth/react';
+import { useMessageCountProvider } from '@/context/messageCountContext';
+
 
 const Navbar = () => {
+  const {data:session}=useSession()
+  const {messagecount,setMessagecount}=useMessageCountProvider()
+  const [countloading,setcountloading]=useState(false)
   // STATE: Controls whether menus are open (true) or closed (false)
   const [isMobileMenu, setIsMobileMenu] = useState(false);
   const [isProfileMenu, setIsProfileMenu] = useState(false);
-  const [isLoggedIn,setIsLoggedIn]=useState(true)
+  const [provider,setProvider]=useState(null)
 
+  const ProfileImage=session?.user?.image
   // HOOKS: Get current URL path to highlight active links
   const pathname = usePathname();
 
   // REF: Creates a reference point to the Profile Menu container
   const profileMenuRef = useRef(null);
+
+  //for setting provider
+  useEffect(()=>{
+   const setAuthproviders=async()=>{
+    const res=await getProviders()
+    setProvider(res)
+   }
+   setAuthproviders()
+  },[])
+
+  useEffect(()=>{
+  
+    const fetchMessageCount=async()=>{
+    try {
+      setcountloading(true)
+      const res=await fetch(`/api/message/unread_count`)
+      const result=await res.json()
+    
+      setMessagecount(result.messageCount)
+    } catch (error) {
+       console.log(error.message)
+    }finally{
+      setcountloading(false)
+    }
+        }
+        fetchMessageCount()
+  },[])
+ 
+
+//   {
+//     "google": {
+//         "id": "google",
+//         "name": "Google",
+//         "type": "oauth",
+//         "signinUrl": "http://localhost:3000/api/auth/signin/google",
+//         "callbackUrl": "http://localhost:3000/api/auth/callback/google"
+//     }
+// }
 
   // EFFECT: Handle "Click Outside" logic
   useEffect(() => {
@@ -90,7 +135,7 @@ const Navbar = () => {
               Properties
             </Link>
 
-            {isLoggedIn&&(
+            {session&&(
                  <Link
               href="/public/properties/add"
               className={`${pathname === '/public/properties/add' ? 'bg-black' : ''} nav-btn`}
@@ -105,19 +150,24 @@ const Navbar = () => {
         {/* RIGHT SIDE (LOGIN & PROFILE) */}
         <div className="flex gap-3">
           {/* LOGIN BUTTON (Example placeholder) (if not logged in) */}
-          {!isLoggedIn&&(
-             <div className="bg-gray-600 hover:bg-gray-800 px-3 py-2 hidden gap-2 items-center rounded-lg md:flex cursor-pointer">
+           {!session&&
+              provider&&Object.values(provider).map((p,index)=>(
+              
+                  <button key={index} className="bg-gray-600 hover:bg-gray-800 px-3 py-2 hidden  gap-2 items-center rounded-lg md:flex cursor-pointer" onClick={()=>signIn(p.id)}>
             <FaGoogle className="text-white" />
             <span className="text-lg text-white">Login or Register</span>
-          </div>
+        
+          </button>
+            )
+       
+           )}
 
-          )}
-         
         {/* if logged in */}
-        {isLoggedIn&&(
+        {session&&(
              <div className="flex gap-4  items-center">
             {/* NOTIFICATION BELL */}
             <Link href={'/public/messages'} className="relative bg-gray-800 w-8 h-8 p-1 flex items-center justify-center rounded-full">
+                 { console.log("session is ",session.user.id)}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -133,9 +183,18 @@ const Navbar = () => {
                 />
               </svg>
               {/* Notification Badge */}
-              <div className="absolute bg-red-500 -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center text-[10px] text-white">
-                3
+                  {countloading?(
+              <div className="absolute bg-red-500 -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center text-[10px] text-white animate-pulse">
+            
+                 
+              
               </div>
+                ):<div className="absolute bg-red-500 -top-1 -right-1 h-4 w-4 rounded-full flex items-center justify-center text-[10px] text-white ">
+            
+                 
+                 {messagecount}
+              </div>
+                }
             </Link>
 
             {/* PROFILE DROPDOWN CONTAINER
@@ -145,12 +204,13 @@ const Navbar = () => {
             <div className="relative" ref={profileMenuRef}>
               <button
                 type="button"
-                className="h-8 w-8 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-white"
+                className=" relative h-9 w-9 rounded-full overflow-hidden focus:outline-none focus:ring-2 focus:ring-white "
                 onClick={() => setIsProfileMenu((prev) => !prev)}
               >
                 <Image
-                  src={Profile}
-                  className="h-8 w-8 object-cover hover:scale-105 "
+                  src={ProfileImage??Profile}
+                  className="object-cover hover:scale-105 "
+                  fill
                   alt="User Profile"
                 />
               </button>
@@ -161,7 +221,7 @@ const Navbar = () => {
               */}
               {isProfileMenu && (
                 <div className="absolute right-0 top-0  w-sm bg-white shadow-lg rounded-md ">
-                  <ProfileMiniDropdown />
+                  <ProfileMiniDropdown signOut={signOut} setIsProfileMenu={setIsProfileMenu}/>
                 </div>
               )}
             </div>
@@ -177,7 +237,7 @@ const Navbar = () => {
       */}
       {isMobileMenu && (
         <div className="md:hidden">
-          <MobileDropdown isLoggedIn={isLoggedIn}/>
+          <MobileDropdown session={session} provider={provider} signIn={signIn} signOut={signOut}/>
         </div>
       )}
     </nav>

@@ -4,8 +4,10 @@ import React, { useRef, useState,useEffect } from 'react'
 import { FaBath, FaBed, FaTrash ,FaRulerCombined,FaMoneyBill} from 'react-icons/fa'
 import {MdLocationOn} from 'react-icons/md'
 import ZoomImage from './ZoomImage'
+import { useRouter } from 'next/navigation'
 
-const ListedCard = ({data}) => {
+const SavedPropertyCard = ({data}) => {
+  const router=useRouter()
      const [zoom,setZoom]=useState(false)
     
          const photoref=useRef(null)
@@ -40,7 +42,7 @@ const ListedCard = ({data}) => {
       )}
       <div className='flex justify-between'>
           <div className='relative h-48 w-48'>
-             <Image src={`/properties/${data.images[0]}`} fill alt='' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
+             <Image src={`${data.images[0]}`} fill alt='' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
              <FaTrash className='absolute top-1 left-1 bg-white h-8 w-8 p-2 text-red-500  rounded-xl hover:scale-110 hover:bg-red-500 hover:text-white'/>
           </div>
           <div className='bg-white p-2 text-blue-500 text-lg font-semibold shadow-lg h-fit rounded-sm'>
@@ -69,7 +71,7 @@ const ListedCard = ({data}) => {
          <div className='border-b border-gray-300 opacity-55'></div>
             <div className='flex justify-between'>
                  <p className='flex gap-1 items-center text-red-600 text-lg'><MdLocationOn/> {data.location.city} {data.location.state}</p>
-                 <button className='bg-blue-600 hover:opacity-80 py-2 px-3 rounded-lg text-white'>Details</button>
+                 <button className='bg-blue-600 hover:opacity-80 py-2 px-3 rounded-lg text-white' onClick={()=>router.push(`/public/properites/${data._id}`)}>Details</button>
             </div>
 
      
@@ -78,4 +80,4 @@ const ListedCard = ({data}) => {
   )
 }
 
-export default ListedCard
+export default SavedPropertyCard

@@ -2,8 +2,10 @@
 import Image from 'next/image'
 import React, { useEffect, useRef, useState } from 'react'
 import ZoomImage from './ZoomImage'
+import { useRouter } from 'next/navigation'
 
-const ListedPropertyCard = ({data}) => {
+const ListedPropertyCard = ({data,handledelete}) => {
+   const router=useRouter()
     const [zoom,setZoom]=useState(false)
     const photoref=useRef(null)
     useEffect(() => {
@@ -26,7 +28,7 @@ const ListedPropertyCard = ({data}) => {
         )}
         <div className='flex gap-3 lg:justify-around '>
               <div className='h-48 w-52 relative'>
-        <Image src={`/properties/${data.images[0]}`} fill alt='' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
+        <Image src={`${data.images[0]}`} fill alt='' className='hover:scale-105 duration-300' onClick={()=>setZoom(prev=>!prev)}/>
        </div>
            <div>
                <h2 className='text-xl font-bold capitalize'>{data.name}</h2>
@@ -36,8 +38,8 @@ const ListedPropertyCard = ({data}) => {
         </div>
           
        <div className='flex justify-between'>
-             <button className='bg-blue-600 hover:opacity-80 py-2 px-4 rounded-lg text-white font-semibold'>Edit</button>
-             <button className='bg-red-600 hover:opacity-80 py-2 px-4 rounded-lg text-white font-semibold'>Delete</button>
+             <button className='bg-blue-600 hover:opacity-80 py-2 px-4 rounded-lg text-white font-semibold' onClick={()=>router.push(`/public/properties/edit/${data._id}`)}>Edit</button>
+             <button className='bg-red-600 hover:opacity-80 py-2 px-4 rounded-lg text-white font-semibold' onClick={()=>handledelete(data._id)}>Delete</button>
        </div>
     </div>
   )
